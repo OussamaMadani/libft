@@ -1,6 +1,7 @@
 #include "libft.h"
 #include <stdio.h>
-int main() { /*
+int main() {
+    /*
     // Exemple d'utilisation de quelques fonctions de la bibliothèque libft
 
     // ft_strlen
@@ -42,56 +43,29 @@ int main() { /*
     join = ft_strtrim(dest3, src3);
      printf("Résultat de ft_strtrim olHelllo et ol : %s\n", join);
 
-      char s1[]="wHellow comment aller vous";
-    char set[]="owsuviH ez";
-    char *tab;
+char tab[]= "-2147483648";
+int x;
+x = ft_atoi(tab);
+char * y;
+y = ft_itoa(-2147483648);
+printf("resultat atoi: %i\n", x);
+printf("Resutat itoa: %s\n", y);
 
-tab = ft_strtrim(s1,set);
-printf("resultat strtrim : %s", tab);*/
+*/
 
+int fd = open("mon_fichier.txt", O_WRONLY | O_CREAT | O_TRUNC, 0666);
 
-
-    // Test 1: Chaîne vide
-    char *str1 = "";
-    char **result1 = ft_split(str1, ' ');
-    if (result1 == NULL) {
-        printf("Test 1: Chaîne vide - Réussi\n");
-    } else {
-        printf("Test 1: Chaîne vide - Échec\n");
+    if (fd == -1) {
+        perror("Erreur lors de l'ouverture du fichier");
+        return 1;
     }
 
-    // Test 2: Chaîne sans séparateurs
-    char *str2 = "CeciEstUnTest";
-    char **result2 = ft_split(str2, ' ');
-    if (result2 != NULL && result2[0] != NULL && result2[0][0] == 'C') {
-        printf("Test 2: Chaîne sans séparateurs - Réussi\n");
-    } else {
-        printf("Test 2: Chaîne sans séparateurs - Échec\n");
-    }
+    char str[] = "Hello, World!";
 
-    // Test 3: Chaîne avec séparateurs
-    char *str3 = "Hello,World,This,Is,A,Test";
-    char **result3 = ft_split(str3, ',');
-    if (result3 != NULL && result3[0] != NULL && result3[5] != NULL && result3[5][0] == 'T') {
-        printf("Test 3: Chaîne avec séparateurs - Réussi\n");
-    } else {
-        printf("Test 3: Chaîne avec séparateurs - Échec\n");
-    }
+    // Écrire la chaîne suivie d'une nouvelle ligne dans le fichier
+    ft_putendl_fd(str, fd);
 
-    // Test 4: Chaîne avec espaces
-    char *str4 = "  Ceci est   un   test  ";
-    char **result4 = ft_split(str4, ' ');
-    if (result4 != NULL && result4[0] != NULL && result4[4] != NULL && result4[4][0] == 't') {
-        printf("Test 4: Chaîne avec espaces - Réussi\n");
-    } else {
-        printf("Test 4: Chaîne avec espaces - Échec\n");
-    }
-
-    // Nettoyer la mémoire
-    free(result1);
-    free(result2);
-    free(result3);
-    free(result4);
-
+    // Fermer le fichier
+    close(fd);
     return 0;
 }
